@@ -22,13 +22,25 @@ public class ExScanner {
     public double scanDouble()
     {
         double number = 0;
+        boolean notANumber = true;
 
-        number = Double.parseDouble(scanner.nextLine());
+        while (notANumber)
+        {
+            try
+            {
+                number = Double.parseDouble(scanner.nextLine());
+                notANumber = false;
+            }
+            catch (NumberFormatException e)
+            {
+                System.out.println(e);
+            }
+        }
 
         return number;
     }
 
-    public int scanInteger()
+    public int scanInteger() throws NumberFormatException
     {
         int number = 0;
 

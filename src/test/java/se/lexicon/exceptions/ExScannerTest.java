@@ -82,10 +82,24 @@ public class ExScannerTest
     {
         String badInput = "nope\n2";
         ExScanner scan = new ExScanner(badInput);
+        boolean notOk = true;
+        int result = 0;
+        int badCounter = 0;
 
-        int result = scan.scanInteger();
+        do {
+            try {
+                result = scan.scanInteger();
+                notOk = false;
+            }
+            catch (NumberFormatException e)
+            {
+                badCounter++;
+            }
+        } while (notOk);
+
 
         assertTrue( result == 2 );
+        assertTrue( badCounter == 1 );
     }
 
     @Test
@@ -93,9 +107,22 @@ public class ExScannerTest
     {
         String badInput = "nope\nohno\n2";
         ExScanner scan = new ExScanner(badInput);
+        boolean notOk = true;
+        int result = 0;
+        int badCounter = 0;
 
-        int result = scan.scanInteger();
+        do {
+            try {
+                result = scan.scanInteger();
+                notOk = false;
+            }
+            catch (NumberFormatException e)
+            {
+                badCounter++;
+            }
+        } while (notOk);
 
         assertTrue( result == 2 );
+        assertTrue( badCounter == 2 );
     }
 }
